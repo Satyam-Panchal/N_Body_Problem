@@ -165,7 +165,7 @@ ax.plot3D(x3_list, y3_list, z3_list, color='green', label='Body 3')
 ax.set_xlabel("x-coordinate", fontsize=14)
 ax.set_ylabel("y-coordinate", fontsize=14)
 ax.set_zlabel("z-coordinate", fontsize=14)
-ax.set_title("Visualization of orbits of stars in a two-body system\n", fontsize=14)
+ax.set_title("Visualization of orbits of stars in a three-body system\n", fontsize=14)
 ax.legend(loc="upper left", fontsize=14)
 
 plt.show()
