@@ -3,13 +3,12 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 from matplotlib.animation import FuncAnimation
 
-ax = plt.axes(projection='3d')
+#ax = plt.axes(projection='3d')
 
 N = 3
 G = 6.67e-11
 delta_t = 0.01
 total_time = 200
-
 
 
 def get_a_i(i, m, x, y, z):
@@ -39,6 +38,7 @@ def get_a_i(i, m, x, y, z):
 
 # Initial vector definitions
 
+
 r1_vector = [-0.5, 0, 0]
 r2_vector = [0.5, 0, 0]
 r3_vector = [0, 1, 0]
@@ -48,7 +48,6 @@ v2_vector = [-0.05, 0, -0.1]
 v3_vector = [0, -0.01, 0]
 
 m = [1.1e8, 0.9e8, 1e8]  # Lists of masses
-
 # creating lists
 
 x1_list, y1_list, z1_list, x2_list, y2_list, z2_list, x3_list, y3_list, z3_list = ([] for i in range(9))
@@ -318,38 +317,38 @@ while t <= total_time:
 
 
 
-ax.plot3D(x1_list, y1_list, z1_list, color="darkblue", label='Body 1')
-ax.plot3D(x2_list, y2_list, z2_list, color="tab:red", label='Body 2')
-ax.plot3D(x3_list, y3_list, z3_list, color="green", label='Body 3')
+# ax.plot3D(x1_list, y1_list, z1_list, color="darkblue", label='Body 1')
+# ax.plot3D(x2_list, y2_list, z2_list, color="tab:red", label='Body 2')
+# ax.plot3D(x3_list, y3_list, z3_list, color="green", label='Body 3')
+#
+# ax.set_xlabel("x-coordinate", fontsize=14)
+# ax.set_ylabel("y-coordinate", fontsize=14)
+# ax.set_zlabel("z-coordinate", fontsize=14)
+# ax.set_title("Visualization of orbits of stars in a three-body system\n", fontsize=14)
+# ax.legend(loc="upper left", fontsize=14)
+#
+# plt.show()
 
-ax.set_xlabel("x-coordinate", fontsize=14)
-ax.set_ylabel("y-coordinate", fontsize=14)
-ax.set_zlabel("z-coordinate", fontsize=14)
-ax.set_title("Visualization of orbits of stars in a three-body system\n", fontsize=14)
-ax.legend(loc="upper left", fontsize=14)
+fig = plt.figure()
+ax = plt.axes(projection="3d")
+
+data_skip = 50
+#
+def init_func():
+    ax.clear()
+    plt.xlabel('time')
+    plt.ylabel('theta')
+
+
+def animating(i):
+    ax.plot3D(x1_list[i:i+data_skip], y1_list[i:i+data_skip], z1_list[i:i+data_skip], color='red')
+    ax.plot3D(x2_list[i:i + data_skip], y2_list[i:i + data_skip], z2_list[i:i + data_skip], color='blue')
+    ax.plot3D(x3_list[i:i + data_skip], y3_list[i:i + data_skip], z3_list[i:i + data_skip], color='green')
+
+
+
+anim = FuncAnimation(fig, animating, frames=np.arange(0, len(x1_list), data_skip), init_func=init_func, interval=600)
 
 plt.show()
 
-# fig = plt.figure()
-# ax = plt.axes(projection="3d")
-#
-# data_skip = 50
-# #
-# def init_func():
-#     ax.clear()
-#     plt.xlabel('time')
-#     plt.ylabel('theta')
-#
-#
-# def animating(i):
-#     ax.plot3D(x1_list[i:i+data_skip], y1_list[i:i+data_skip], z1_list[i:i+data_skip], color='red')
-#     ax.plot3D(x2_list[i:i + data_skip], y2_list[i:i + data_skip], z2_list[i:i + data_skip], color='blue')
-#     ax.plot3D(x3_list[i:i + data_skip], y3_list[i:i + data_skip], z3_list[i:i + data_skip], color='green')
-#
-#
-#
-# anim = FuncAnimation(fig, animating, frames=np.arange(0, len(x1_list), data_skip), init_func=init_func, interval=100)
-#
-# plt.show()
-#
-# anim.save('twobodygif.mp4', dpi=150, fps=60, writer='ffmpeg')
+anim.save('ultimate.mp4', dpi=150, fps=60, writer='ffmpeg')
