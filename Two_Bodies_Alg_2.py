@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
+from matplotlib.animation import FuncAnimation
 
 ax = plt.axes(projection="3d")
 
@@ -246,3 +247,29 @@ ax.set_title("Visualization of orbits of stars in a two-body system\n", fontsize
 ax.legend(loc="upper left", fontsize=14)
 
 plt.show()
+
+
+# FOR ANIMATING
+
+# fig = plt.figure()
+# ax = plt.axes(projection="3d")
+
+# data_skip = 50
+# #
+# def init_func():
+#     ax.clear()
+#     plt.xlabel('time')
+#     plt.ylabel('theta')
+
+
+# def animating(i):
+#     ax.plot3D(x1_list[i:i+data_skip], y1_list[i:i+data_skip], z1_list[i:i+data_skip], color='red')
+#     ax.plot3D(x2_list[i:i + data_skip], y2_list[i:i + data_skip], z2_list[i:i + data_skip], color='blue')
+
+
+
+# anim = FuncAnimation(fig, animating, frames=np.arange(0, len(x1_list), data_skip), init_func=init_func, interval=100)
+
+# plt.show()
+
+# anim.save('twobodygif.mp4', dpi=150, fps=60, writer='ffmpeg')
